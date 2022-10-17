@@ -1,0 +1,48 @@
+### Getting a list of planets 
+
+GET http://localhost:3001/planets HTTP/1.1
+
+
+
+#### GETTING ALL THE LAUNCHES 
+GET http://localhost:3001/launches HTTP/1.1
+
+
+### CREATING A NEW LAUNCH
+POST http://localhost:3001/launches
+content-type: application/json
+
+{ 
+    "mission": "Up and Away",
+    "rocket": "ZTM Experimental IS3",
+    "target": "Kepler-62 f",
+    "launchDate": "January 17, 2028",
+    "upcoming": true
+}
+
+##### DELETING A LAUNCH BY ID 
+DELETE http://localhost:3001/launches/100 HTTP/1.1
+
+##### SPACE X DATA 
+POST https://api.spacexdata.com/v4/launches/query
+content-type: application/json
+
+{
+        "query": {},
+        "options": {
+            "populate": [
+                {
+                    "path": "rocket",
+                    "select": {
+                        "name": 1,
+                    },
+                },
+                {
+                    "path": "payloads",
+                    "select": {
+                        "customers": 1,
+                    },
+                },
+            ],
+        },
+    }
